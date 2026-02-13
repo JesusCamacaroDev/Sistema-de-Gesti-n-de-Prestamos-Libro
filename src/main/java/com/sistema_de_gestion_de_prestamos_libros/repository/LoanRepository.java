@@ -11,7 +11,6 @@ public interface LoanRepository extends JpaRepository<Loan, Long> {
 
     Loan save(Loan loan);
 
-    List<Loan> findByUserId(Long userId);
 
 
 }
