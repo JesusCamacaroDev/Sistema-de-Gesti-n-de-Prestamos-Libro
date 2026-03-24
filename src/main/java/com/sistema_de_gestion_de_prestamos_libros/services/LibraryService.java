@@ -4,6 +4,7 @@ package com.sistema_de_gestion_de_prestamos_libros.services;
 import com.sistema_de_gestion_de_prestamos_libros.model.BooKStatus;
 import com.sistema_de_gestion_de_prestamos_libros.model.Book;
 import com.sistema_de_gestion_de_prestamos_libros.model.Loan;
+import com.sistema_de_gestion_de_prestamos_libros.model.User;
 import com.sistema_de_gestion_de_prestamos_libros.repository.BookRepository;
 import com.sistema_de_gestion_de_prestamos_libros.repository.LoanRepository;
 import com.sistema_de_gestion_de_prestamos_libros.repository.UserRepository;
@@ -31,19 +32,20 @@ public class LibraryService {
     public Loan createLoan(Long bookId, Long UserId) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(()-> new RuntimeException("Book not found"));
-        Loan user = userRepository.findById(UserId)
+        User user = userRepository.findById(UserId)
                 .orElseThrow(()-> new RuntimeException("User not found"));
 
-        if (book.getStatus() == BooKStatus.PRESTADO){
-            throw new RuntimeException("Book status: PRESTADO");
+
+        if (book.getStatus() == BooKStatus.prestado){
+            throw new RuntimeException("Book status: prestado");
         }
 
-        book.setStatus(BooKStatus.PRESTADO);
+        book.setStatus(BooKStatus.prestado);
         bookRepository.save(book);
 
         Loan loan = new Loan();
         loan.setBook(book);
-        loan.setUser(user.getUser());
+        loan.setUser(user);
         loan.setFechaInit(LocalDate.now());
         return  loanRepository.save(loan);
     }
@@ -51,5 +53,6 @@ public class LibraryService {
     public List<Loan> getLoanByUser(Long userId){
         return loanRepository.findByUserId(userId);
     }
+
 
 }

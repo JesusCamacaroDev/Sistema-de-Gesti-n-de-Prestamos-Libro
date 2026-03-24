@@ -15,10 +15,10 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String titulo;
-    private String autor;
+    private String title;
+    private String author;
     private String isbn;
 
     @Enumerated(EnumType.STRING)
-    private BooKStatus status;
+    private BooKStatus status = BooKStatus.disponible;
 }
