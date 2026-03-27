@@ -1,6 +1,8 @@
 package com.sistema_de_gestion_de_prestamos_libros.services;
 
 
+import com.sistema_de_gestion_de_prestamos_libros.exception.BookAlreadyBorrowedException;
+import com.sistema_de_gestion_de_prestamos_libros.exception.ResourceNotFoundException;
 import com.sistema_de_gestion_de_prestamos_libros.model.BooKStatus;
 import com.sistema_de_gestion_de_prestamos_libros.model.Book;
 import com.sistema_de_gestion_de_prestamos_libros.model.Loan;
@@ -31,13 +33,17 @@ public class LibraryService {
 
     public Loan createLoan(Long bookId, Long UserId) {
         Book book = bookRepository.findById(bookId)
-                .orElseThrow(()-> new RuntimeException("Book not found"));
+                //.orElseThrow(()-> new RuntimeException("Book not found"));
+        .orElseThrow(() -> new ResourceNotFoundException("El libro con ID " + bookId + " no fue encontrado"));
+
         User user = userRepository.findById(UserId)
-                .orElseThrow(()-> new RuntimeException("User not found"));
+                //.orElseThrow(()-> new RuntimeException("User not found"));
+        .orElseThrow(() -> new ResourceNotFoundException("El usuario con ID " + UserId + " no fue encontrado"));
 
 
         if (book.getStatus() == BooKStatus.prestado){
-            throw new RuntimeException("Book status: prestado");
+            //throw new RuntimeException("Book status: prestado");
+            throw new BookAlreadyBorrowedException("El libro con ID " + bookId + " ya está prestado.");
         }
 
         book.setStatus(BooKStatus.prestado);

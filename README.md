@@ -1,5 +1,4 @@
-# Sistema-de-Gesti-n-de-Prestamos-Libro
-Sistema de Gestión de Préstamos (LibroSaaS)
+# Sistema de Gestión de Préstamos (LibroSaaS)
 
 ¡Hola! Qué bueno tenerte por acá. En **"ByteFlow Solutions"** (nuestra empresa ficticia) nos especializamos en modernizar sistemas para pequeñas y medianas empresas.
 
@@ -54,7 +53,3 @@ Necesitamos que expongas los siguientes servicios:
 * **Usa DTOs:** No devuelvas la entidad directamente a la API; usa objetos de transferencia de datos para practicar buenas arquitecturas.
 * **Manejo de Errores:** Usa un `@RestControllerAdvice` para que los errores se vean limpios y no lancen un "stacktrace" gigante al cliente.
 * **Clean Code:** Mantén tus controladores delgados y pon la lógica pesada en los **Services**.
-
----
-
-**¿Te gustaría que te ayude a configurar la estructura inicial del proyecto en un archivo `pom.xml` o prefieres intentar crear las entidades primero?**arcado como "PRESTADO". Si lo intenta, la API debe devolver un error claro (por ejemplo, un código 400 Bad Request).
